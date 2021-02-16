@@ -10,3 +10,5 @@
 - User can not vote up his/her own challenge but can see total vote count by all others and even vote up other's challnges as well.
 - Sorting is provided based on vote count & created date. Currently, created date is same as the last modified date. 
   Modified date can be taken into account when admin level roles are introduced in the application.
+
+  -- The above mentioned functionalities within my understandings are working properly --
