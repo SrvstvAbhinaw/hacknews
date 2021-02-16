@@ -1,0 +1,28 @@
+<div class="loginpage">
+  <img class="img-body" src="../../assets/Images/logo.jpg" alt="HomePage">
+  <h2>Register here</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+          <label>Employee ID :</label> &nbsp;
+          <input type="text" formControlName="employeeid" class="form-control" />
+          <div *ngIf="warning1" class="warningClass">{{warningID}}</div>
+      </div>
+
+      <div class="form-group">
+        <label>Employee Name :</label> &nbsp;
+        <input type="text" formControlName="employeename" class="form-control" />
+        <div *ngIf="warning2" class="warningClass">{{warningName}}</div>
+      </div>
+
+      <div class="form-group">
+      <button mat-button style= 
+          "background-color:blue; color:white"> 
+          Register 
+      </button> &nbsp;
+      <button routerLink="/login" mat-button style= 
+          "background-color:blue; color:white"> 
+          Login 
+      </button>
+      </div>
+  </form>
+</div>

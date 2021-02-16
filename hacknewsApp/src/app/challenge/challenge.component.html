@@ -1,0 +1,38 @@
+<h1 style="text-align: center;">
+  {{headMsg}}
+</h1>
+<form [formGroup]="challengeForm" (ngSubmit)="onSubmit()">
+  
+  <div class="form-element">
+    *Title:
+    <input class="form-element" autofocus="true" type="text" formControlName="title" [(ngModel)]="challenge.title" required>
+  </div>
+
+  <div class="form-element">
+    *Description:
+    <input class="form-element" type="text" formControlName="description" [(ngModel)]="challenge.description" required>
+  </div>
+  
+  <div class="form-element">
+    *Tag:
+    <!-- <input class="form-element" type="text" formControlName="tag"> -->
+    <select class="form-element" formControlName="tag" id="tag" [(ngModel)]="challenge.tag" required>
+      <option selected value="">--Select--</option>
+      <option *ngFor="let item of tagList" value="{{item}}">{{item}}</option>
+    </select>
+  </div>
+
+  <div class="form-element">
+    <button mat-button  type="submit" [disabled]="!challengeForm.valid" style="background-color:blue; color:white"> 
+            Submit 
+        </button>
+  </div>
+
+  <div class="form-element">
+    <button mat-button  type="reset" style="background-color:green; color:white"> 
+            Reset 
+        </button>
+  </div>
+  
+
+</form>

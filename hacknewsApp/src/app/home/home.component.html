@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+    <!-- <div class="carousel-part">
+    </div> -->
+    <ng-image-slider [images]="imageObject" [infinite]=true [imageSize]="{width: '100%', height: '300px'}"
+    [autoSlide]="{interval: 3, stopOnHover: true}" #nav></ng-image-slider>
+
+    <div class="optionbar">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+        <mat-icon  matTooltipPosition="below" matTooltip="More options">add</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item routerLink="/challenge">Create new</button>
+        <button mat-menu-item>Coming soon</button>
+      </mat-menu>
+
+      <button mat-icon-button *ngIf="challengelist.length>0" [matMenuTriggerFor]="sortmenu" aria-label="Toggle menu">
+        <mat-icon  matTooltipPosition="below" matTooltip="Sort">sort</mat-icon>
+      </button>
+      <mat-menu #sortmenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="sortbyvotesA()">Sort by votes (ASC)</button>
+        <button mat-menu-item (click)="sortbyvotesD()">Sort by votes (DESC)</button>
+        <button mat-menu-item (click)="sortbydateA()">Sort by created date (ASC)</button>
+        <button mat-menu-item (click)="sortbydateD()">Sort by created date (DESC)</button>
+      </mat-menu>
+    </div>
+
+    <div class="grid-container">
+      <span>
+        <h1 class="mat-h1">Dashboard</h1>
+      </span>
+      <div *ngIf="challengelist.length==0">
+        <h1>No records found</h1>
+        <h6>Create new records by clicking on + icon.</h6>
+      </div>
+      <mat-grid-list cols="3" rowHeight="300px">
+        <mat-grid-tile *ngFor="let card of challengelist">
+          <mat-card class="dashboard-card">
+            <img class="tile" src="../../assets/Images/challenge.jpg" alt="header">
+            <mat-card-header>
+              <mat-card-title>
+                {{card.title}}
+                <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" xPosition="before">
+                  <button mat-menu-item (click)="thisChallenge(card,'edit')">
+                    <mat-icon>edit</mat-icon>Edit</button>
+                  <button mat-menu-item (click)="thisChallenge(card,'delete')">
+                    <mat-icon>delete</mat-icon>Delete</button>
+                </mat-menu>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="dashboard-card-content">
+              <div class="truncate" matTooltipPosition="right" matTooltip="{{card.description}}">{{card.description}}</div>
+            </mat-card-content>
+            <mat-card-content class="dashboard-card-content">
+              <div class="truncate" matTooltipPosition="below" matTooltip="{{card.tag}}">Category : {{card.tag}}</div>
+            </mat-card-content>   
+            <div>
+              <button mat-icon-button disabled="true" *ngIf="card.createdby == auth.currentUserValue.employeename" class="thumbup1" aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon>thumb_up</mat-icon> : {{card.totalvote}}
+              </button>
+              <button mat-icon-button *ngIf="!(card.createdby == auth.currentUserValue.employeename)" class="thumbup2" aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon matTooltip="Vote" (click)="poll(card)">thumb_up</mat-icon> : {{card.totalvote}}
+              </button>
+              <button mat-icon-button class="share" aria-label="Example icon button with a vertical three dot icon">
+                <mat-icon matTooltip="Share">share</mat-icon>
+              </button>
+            </div>
+          </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>    
+    
+  </div>
+</div>
+

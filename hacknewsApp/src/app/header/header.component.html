@@ -1,0 +1,26 @@
+<div class="header-body">
+  <!-- <img class="img-body" src="../../assets/Images/logo.jpg" alt="logo"> -->
+    <span>
+    <img class="img-body" (click)="gotoHome()" src="../../assets/Images/logo.jpg" alt="logo">
+    </span>
+    <span>
+      <b class="title" (click)="gotoHome()">Hack News</b>
+    </span>
+
+    <span class="menubar" *ngIf="auth.loggedUser">
+      <label class="Profile">{{LoggedInUser.employeename}}</label>
+      <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>My Profile</span>
+        </button>
+      <button mat-menu-item (click)='logoutUser()'>
+        <mat-icon>add_to_home_screen</mat-icon>
+        <span>Log out</span>
+      </button>
+    </mat-menu>
+    </span>
+</div>
