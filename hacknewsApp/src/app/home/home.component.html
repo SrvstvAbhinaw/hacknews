@@ -40,11 +40,11 @@
             <mat-card-header>
               <mat-card-title>
                 {{card.title}}
-                <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <button mat-icon-button class="more-button"  *ngIf="(card.createdby == auth.currentUserValue.employeename)" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
                   <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu" xPosition="before">
-                  <button mat-menu-item (click)="thisChallenge(card,'edit')">
+                  <button mat-menu-item  (click)="thisChallenge(card,'edit')">
                     <mat-icon>edit</mat-icon>Edit</button>
                   <button mat-menu-item (click)="thisChallenge(card,'delete')">
                     <mat-icon>delete</mat-icon>Delete</button>
